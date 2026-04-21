@@ -5,48 +5,46 @@ cli:
 collections: []
 credentials: []
 openfn:
-  uuid: 31b18a53-2035-416e-8937-ca1cf17d1664
+  uuid: 2976948c-b8c4-4cdc-9f7f-176d4312a18e
   endpoint: https://2daf-154-160-0-161.ngrok-free.app
-  inserted_at: 2026-04-21T05:07:54Z
-  updated_at: 2026-04-21T05:08:09Z
+  inserted_at: 2026-04-21T05:30:39Z
+  updated_at: 2026-04-21T05:30:39Z
 options:
-  env: main
   allow_support_access: false
   requires_mfa: false
   retention_policy: retain_all
 workflows:
-  - name: "000000000"
+  - name: Event-based workflow
     steps:
-      - id: simple-step
-        name: simple step
+      - id: transform-data
+        name: Transform data
         expression: |
-          // Start writing your job code here
+          // Validate and transform the data you've received...
           fn(state => {
-            console.log("Triggered by webhook");
+            console.log("Do some data transformation here");
             return state;
           })
         adaptor: "@openfn/language-common@latest"
         openfn:
-          uuid: 4a6f7191-6c7f-483d-83eb-f4b711c7d8ff
+          uuid: e45e462f-d2c8-408c-8c1c-a1af356b40b8
       - id: webhook
         type: webhook
         enabled: true
         openfn:
-          uuid: 0da1bda9-c2de-4951-8542-a7f5e517d9d9
+          uuid: 6ddcc204-5921-4ac6-88ed-818b0441c9e8
           webhook_reply: before_start
         next:
-          simple-step:
+          transform-data:
             disabled: false
             condition: always
             openfn:
-              uuid: 349a30e8-c0ef-4102-841a-e68055d2c2ee
+              uuid: 66c022cb-d4d3-4f49-82cc-115851353313
     history:
-      - app:943c7470fd56
-      - app:2673d7facc13
+      - app:c215a565d303
     openfn:
-      uuid: 3b8a91f1-f10d-4bd6-8afa-30ed28349353
-      inserted_at: 2026-04-21T05:08:19Z
-      updated_at: 2026-04-21T05:08:27Z
-      lock_version: 2
-    id: "000000000"
+      uuid: e5a660a2-0c76-4f9a-857a-aaee66d08657
+      lock_version: 1
+      inserted_at: 2026-04-21T05:30:46Z
+      updated_at: 2026-04-21T05:30:46Z
+    id: event-based-workflow
     start: webhook

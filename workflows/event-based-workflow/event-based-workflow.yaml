@@ -1,16 +1,16 @@
-id: "000000000"
-name: "000000000"
+id: event-based-workflow
+name: Event-based workflow
 start: webhook
 options: {}
 steps:
-  - id: simple-step
-    name: simple step
+  - id: transform-data
+    name: Transform data
     adaptor: "@openfn/language-common@latest"
-    expression: ./simple-step.js
+    expression: ./transform-data.js
   - id: webhook
     type: webhook
     enabled: true
     next:
-      simple-step:
+      transform-data:
         disabled: false
         condition: always
