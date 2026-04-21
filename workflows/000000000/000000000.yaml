@@ -1,0 +1,16 @@
+id: "000000000"
+name: "000000000"
+start: webhook
+options: {}
+steps:
+  - id: simple-step
+    name: simple step
+    adaptor: "@openfn/language-common@latest"
+    expression: ./simple-step.js
+  - id: webhook
+    type: webhook
+    enabled: true
+    next:
+      simple-step:
+        disabled: false
+        condition: always

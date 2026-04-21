@@ -1,3 +1,18 @@
 project:
   uuid: 31b18a53-2035-416e-8937-ca1cf17d1664
   endpoint: https://2daf-154-160-0-161.ngrok-free.app
+  inserted_at: 2026-04-21T05:07:54Z
+  updated_at: 2026-04-21T05:08:09Z
+  id: openfn-sync
+  name: openfn-sync
+  forked_from:
+    "000000000": app:2673d7facc13
+workspace:
+  credentials: credentials.yaml
+  dirs:
+    projects: .projects
+    workflows: workflows
+  formats:
+    openfn: yaml
+    project: yaml
+    workflow: yaml

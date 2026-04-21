@@ -1,0 +1,52 @@
+id: openfn-sync
+name: openfn-sync
+cli:
+  version: 2
+collections: []
+credentials: []
+openfn:
+  uuid: 31b18a53-2035-416e-8937-ca1cf17d1664
+  endpoint: https://2daf-154-160-0-161.ngrok-free.app
+  inserted_at: 2026-04-21T05:07:54Z
+  updated_at: 2026-04-21T05:08:09Z
+options:
+  env: main
+  allow_support_access: false
+  requires_mfa: false
+  retention_policy: retain_all
+workflows:
+  - name: "000000000"
+    steps:
+      - id: simple-step
+        name: simple step
+        expression: |
+          // Start writing your job code here
+          fn(state => {
+            console.log("Triggered by webhook");
+            return state;
+          })
+        adaptor: "@openfn/language-common@latest"
+        openfn:
+          uuid: 4a6f7191-6c7f-483d-83eb-f4b711c7d8ff
+      - id: webhook
+        type: webhook
+        enabled: true
+        openfn:
+          uuid: 0da1bda9-c2de-4951-8542-a7f5e517d9d9
+          webhook_reply: before_start
+        next:
+          simple-step:
+            disabled: false
+            condition: always
+            openfn:
+              uuid: 349a30e8-c0ef-4102-841a-e68055d2c2ee
+    history:
+      - app:943c7470fd56
+      - app:2673d7facc13
+    openfn:
+      uuid: 3b8a91f1-f10d-4bd6-8afa-30ed28349353
+      inserted_at: 2026-04-21T05:08:19Z
+      updated_at: 2026-04-21T05:08:27Z
+      lock_version: 2
+    id: "000000000"
+    start: webhook
